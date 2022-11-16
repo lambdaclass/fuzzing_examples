@@ -2,6 +2,7 @@
 extern crate honggfuzz;
 extern crate tiff;
 
+// to run this fuzzer use honggfuzz to run image-tiff
 use std::io::Cursor;
 
 fn main() {

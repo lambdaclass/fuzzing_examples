@@ -1,7 +1,7 @@
 #[macro_use]
 extern crate honggfuzz;
 extern crate xmlparser;
-
+// to run this fuzzer use honggfuzz to run xmlparser
 fn main() {
     loop{
         fuzz!(|data: &[u8]| {
