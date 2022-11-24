@@ -1,0 +1,97 @@
+=====================================================================
+TIME: 2022-11-23.19:36:41
+=====================================================================
+FUZZER ARGS:
+ mutationsPerRun : 5
+ externalCmd     : NULL
+ fuzzStdin       : FALSE
+ timeout         : 1 (sec)
+ ignoreAddr      : (nil)
+ ASLimit         : 0 (MiB)
+ RSSLimit        : 0 (MiB)
+ DATALimit       : 0 (MiB)
+ wordlistFile    : NULL
+ dynFileMethod   : 
+ fuzzTarget      : hfuzz_target/aarch64-unknown-linux-gnu/release/asn1 -i asn1/hfuzz_workspace 
+CRASH:
+DESCRIPTION: 
+ORIG_FNAME: 33-misc-OK.asn1
+FUZZ_FNAME: hfuzz_workspace/asn1/SIGABRT.PC.fffff7d5eeac.STACK.f08840793.CODE.-6.ADDR.0.INSTR.adrp_x0,_0x000000000013c000.fuzz
+PID: 42171
+SIGNAL: SIGABRT (6)
+PC: 0xfffff7d5eeac
+FAULT ADDRESS: 0x0
+INSTRUCTION: adrp_x0,_0x000000000013c000
+STACK HASH: 0000000f08840793
+STACK:
+ <0x0000fffff7d4baa0> [func:UNKNOWN file: line:0 module:/lib/aarch64-linux-gnu/libc-2.31.so]
+ <0x0000aaaaaaaf2a1c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaa9694> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaadba60> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaf0978> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaf07a0> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaeefac> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaf0524> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaaa5d4> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaabf28> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaacf8c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaaac6c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaace40> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaaac04> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaacef8> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaeafb4> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaacecc> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaace78> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000fffff7d4be18> [func:UNKNOWN file: line:0 module:/lib/aarch64-linux-gnu/libc-2.31.so]
+ <0x0000aaaaaaaaab00> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaaab00> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+=====================================================================
+=====================================================================
+TIME: 2022-11-23.19:50:26
+=====================================================================
+FUZZER ARGS:
+ mutationsPerRun : 5
+ externalCmd     : NULL
+ fuzzStdin       : FALSE
+ timeout         : 1 (sec)
+ ignoreAddr      : (nil)
+ ASLimit         : 0 (MiB)
+ RSSLimit        : 0 (MiB)
+ DATALimit       : 0 (MiB)
+ wordlistFile    : NULL
+ dynFileMethod   : 
+ fuzzTarget      : hfuzz_target/aarch64-unknown-linux-gnu/release/asn1 -i asn1/hfuzz_workspace 
+CRASH:
+DESCRIPTION: 
+ORIG_FNAME: a64bbec000000000de1bc69000000000.00000003.honggfuzz.cov
+FUZZ_FNAME: hfuzz_workspace/asn1/SIGABRT.PC.fffff7d5eeac.STACK.e8cb2dd22.CODE.-6.ADDR.0.INSTR.adrp_x0,_0x000000000013c000.fuzz
+PID: 5769
+SIGNAL: SIGABRT (6)
+PC: 0xfffff7d5eeac
+FAULT ADDRESS: 0x0
+INSTRUCTION: adrp_x0,_0x000000000013c000
+STACK HASH: 0000000e8cb2dd22
+STACK:
+ <0x0000fffff7d4baa0> [func:UNKNOWN file: line:0 module:/lib/aarch64-linux-gnu/libc-2.31.so]
+ <0x0000aaaaaaaf30dc> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaa9874> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaadc120> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaf1038> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaf0ea0> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaef66c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaf0be4> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaaa7b4> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaac42c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaac110> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaad1b8> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaaae4c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaad06c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaaade4> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaad124> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaeb674> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaad0f8> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaad0a4> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000fffff7d4be18> [func:UNKNOWN file: line:0 module:/lib/aarch64-linux-gnu/libc-2.31.so]
+ <0x0000aaaaaaaaace0> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+ <0x0000aaaaaaaaace0> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/asn1/hfuzz_target/aarch64-unknown-linux-gnu/release/asn1]
+=====================================================================

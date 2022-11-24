@@ -1,0 +1,72 @@
+
+/*** <<< INCLUDES [TestSet] >>> ***/
+
+#include <VisibleString.h>
+#include <constr_SET.h>
+
+/*** <<< DEPS [TestSet] >>> ***/
+
+
+/*
+ * Method of determining the components presence
+ */
+typedef enum TestSet_PR {
+	TestSet_PR_m0,	/* Member m0 is present */
+	TestSet_PR_m1,	/* Member m1 is present */
+	TestSet_PR_m2,	/* Member m2 is present */
+	TestSet_PR_m3,	/* Member m3 is present */
+	TestSet_PR_m4,	/* Member m4 is present */
+	TestSet_PR_m5,	/* Member m5 is present */
+	TestSet_PR_m6,	/* Member m6 is present */
+	TestSet_PR_m7,	/* Member m7 is present */
+	TestSet_PR_m8,	/* Member m8 is present */
+	TestSet_PR_m9,	/* Member m9 is present */
+} TestSet_PR;
+
+/*** <<< TYPE-DECLS [TestSet] >>> ***/
+
+typedef struct TestSet {
+	VisibleString_t	 m0;
+	VisibleString_t	*m1	/* OPTIONAL */;
+	VisibleString_t	 m2;
+	VisibleString_t	 m3;
+	VisibleString_t	*m4	/* OPTIONAL */;
+	VisibleString_t	 m5;
+	VisibleString_t	 m6;
+	VisibleString_t	 m7;
+	VisibleString_t	*m8	/* OPTIONAL */;
+	VisibleString_t	 m9;
+	/*
+	 * This type is extensible,
+	 * possible extensions are below.
+	 */
+	
+	/* Presence bitmask: ASN_SET_ISPRESENT(pTestSet, TestSet_PR_x) */
+	unsigned int _presence_map
+		[((10+(8*sizeof(unsigned int))-1)/(8*sizeof(unsigned int)))];
+	
+	/* Context for parsing across buffer boundaries */
+	asn_struct_ctx_t _asn_ctx;
+} TestSet_t;
+
+/*** <<< FUNC-DECLS [TestSet] >>> ***/
+
+extern asn_TYPE_descriptor_t asn_DEF_TestSet;
+
+/*** <<< STAT-DEFS [TestSet] >>> ***/
+
+static asn_TYPE_member_t asn_MBR_TestSet_1[] = {
+	{ ATF_NOFLAGS, 0, offsetof(struct TestSet, m0),
+		.tag = (ASN_TAG_CLASS_CONTEXT | (0 << 2)),
+		.tag_mode = -1,	/* IMPLICIT tag at current level */
+		.type = &asn_DEF_VisibleString,
+		.memb_constraints = 0,	/* Defer constraints checking to the member type */
+		.per_constraints = 0,	/* PER is not compiled, use -gen-PER */
+		.default_value = 0,
+		.name = "m0"
+		},
+	{ ATF_POINTER, 1, offsetof(struct TestSet, m1),
+		.tag = (ASN_TAG_CLASS_CONTEXT | (1 << 2)),
+		.tag_mode = -1,	/* IMPLICIT tag at current level */
+		.type = &asn_DEF_VisibleString,
+		.memb_const
