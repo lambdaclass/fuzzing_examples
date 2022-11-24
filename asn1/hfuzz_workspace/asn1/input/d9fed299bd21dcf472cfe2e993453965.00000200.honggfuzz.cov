@@ -1,0 +1,12 @@
+ModulePERStrings { iso org(3) dod(6) internet(1) private(4) enterprise(1)
+	spelio(9363) software(1) asn1c(5) test(1) 119 }
+DEFINITIONS AUTOMATIC TAGS ::=
+BEGIN
+
+PDU ::= SEQUENCE {
+    many	 [0] IMPLICIT SEQUENCE OF PDU OPTIONAL,
+    ia5	 [1] IMPLICIT IA5String OPTIONAL,
+    ia5-c	 [2] IMPLICIT IA5String (FROM("A".."Z")) OPTIONAL,
+    ia5-ce	 [3] IMPLICIT IA5String (FROM("A".."Z",...)) OPTIONAL,
+    ia5-ir	 [4] IMPLICIT IA5String (FROM("A".."B" | "X".."Z")) OPTIONAL,
+    vs	 [5] IMPLICIT VisibleString OPTION

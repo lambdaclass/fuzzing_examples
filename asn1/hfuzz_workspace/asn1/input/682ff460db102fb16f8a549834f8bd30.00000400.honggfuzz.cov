@@ -1,0 +1,32 @@
+ModuleNestedConstraintsCheck { iso org(3) dod(6) internet(1) private(4)
+	enterprise(1) spelio(9363) software(1) asn1c(5) test(1) 50 1 }
+DEFINITIONS ::=
+BEGIN
+
+Int1 ::= INTEGER
+-- Practical constraints (Int1): (MIN..MAX)  
+-- PER-visible constraints (Int1): (MIN..MAX)  
+
+Int2 ::= Int1 (0..MAX)
+-- Combined constraints: (0..MAX)
+-- Practical constraints (Int1): (0..MAX)  
+-- PER-visible constraints (Int1): (0..MAX)  
+
+Int3 ::= Int2 (MIN..10)
+-- Combined constraints: (0..MAX)(MIN..10)
+-- Practical constraints (Int1): (0..10)  
+-- PER-visible constraints (Int1): (0..10)  
+
+Int4 ::= Int3 (5..MAX,...,1..4)
+-- Combined constraints: (0..MAX)(MIN..10)(5..MAX,...,1..4)
+-- Practical constraints (Int1): (1..10,...)  
+-- PER-visible constraints (Int1): (1..10,...)  
+
+Int5 ::= Int4 (MIN..5)
+-- Combined constraints: (0..MAX)(MIN..10)(5..MAX)(MIN..5)
+-- Practical constraints (Int1): (5)  
+-- PER-visible constraints (Int1): (5)  
+
+ten Int1 ::= 10
+-- Practical constraints (Int1): (MIN..MAX)  
+-- PER-visible constraints (Int1): 
