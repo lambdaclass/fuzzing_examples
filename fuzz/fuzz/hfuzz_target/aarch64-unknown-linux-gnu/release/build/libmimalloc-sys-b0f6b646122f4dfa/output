@@ -1,0 +1,58 @@
+OPT_LEVEL = Some("3")
+TARGET = Some("aarch64-unknown-linux-gnu")
+HOST = Some("aarch64-unknown-linux-gnu")
+cargo:rerun-if-env-changed=CC_aarch64-unknown-linux-gnu
+CC_aarch64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=CC_aarch64_unknown_linux_gnu
+CC_aarch64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_CC
+HOST_CC = None
+cargo:rerun-if-env-changed=CC
+CC = None
+cargo:rerun-if-env-changed=CFLAGS_aarch64-unknown-linux-gnu
+CFLAGS_aarch64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=CFLAGS_aarch64_unknown_linux_gnu
+CFLAGS_aarch64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+DEBUG = Some("false")
+CARGO_CFG_TARGET_FEATURE = Some("aes,crc,neon,pmuv3,sha2")
+cargo:rerun-if-env-changed=CC_aarch64-unknown-linux-gnu
+CC_aarch64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=CC_aarch64_unknown_linux_gnu
+CC_aarch64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_CC
+HOST_CC = None
+cargo:rerun-if-env-changed=CC
+CC = None
+cargo:rerun-if-env-changed=CFLAGS_aarch64-unknown-linux-gnu
+CFLAGS_aarch64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=CFLAGS_aarch64_unknown_linux_gnu
+CFLAGS_aarch64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_CFLAGS
+HOST_CFLAGS = None
+cargo:rerun-if-env-changed=CFLAGS
+CFLAGS = None
+cargo:rerun-if-env-changed=CRATE_CC_NO_DEFAULTS
+CRATE_CC_NO_DEFAULTS = None
+CARGO_CFG_TARGET_FEATURE = Some("aes,crc,neon,pmuv3,sha2")
+running: "cc" "-O3" "-ffunction-sections" "-fdata-sections" "-fPIC" "-I" "c_src/mimalloc/include" "-I" "c_src/mimalloc/src" "-Wall" "-Wextra" "-ftls-model=initial-exec" "-DMI_DEBUG=0" "-o" "/home/fuzzing/fuzzing_examples/cairo-rs/fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/build/libmimalloc-sys-b0f6b646122f4dfa/out/c_src/mimalloc/src/static.o" "-c" "c_src/mimalloc/src/static.c"
+exit status: 0
+cargo:rerun-if-env-changed=AR_aarch64-unknown-linux-gnu
+AR_aarch64-unknown-linux-gnu = None
+cargo:rerun-if-env-changed=AR_aarch64_unknown_linux_gnu
+AR_aarch64_unknown_linux_gnu = None
+cargo:rerun-if-env-changed=HOST_AR
+HOST_AR = None
+cargo:rerun-if-env-changed=AR
+AR = None
+running: "ar" "cq" "/home/fuzzing/fuzzing_examples/cairo-rs/fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/build/libmimalloc-sys-b0f6b646122f4dfa/out/libmimalloc.a" "/home/fuzzing/fuzzing_examples/cairo-rs/fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/build/libmimalloc-sys-b0f6b646122f4dfa/out/c_src/mimalloc/src/static.o"
+exit status: 0
+running: "ar" "s" "/home/fuzzing/fuzzing_examples/cairo-rs/fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/build/libmimalloc-sys-b0f6b646122f4dfa/out/libmimalloc.a"
+exit status: 0
+cargo:rustc-link-lib=static=mimalloc
+cargo:rustc-link-search=native=/home/fuzzing/fuzzing_examples/cairo-rs/fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/build/libmimalloc-sys-b0f6b646122f4dfa/out
