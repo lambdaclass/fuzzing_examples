@@ -1,3 +1,0 @@
-cargo:rerun-if-changed=build/main.rs
-cargo:rustc-env=TYPENUM_BUILD_CONSTS=/home/fuzzing/fuzzing_examples/cairo-rs/fuzz/hfuzz_target/release/build/typenum-42df380a6f1f8daf/out/consts.rs
-cargo:rustc-env=TYPENUM_BUILD_OP=/home/fuzzing/fuzzing_examples/cairo-rs/fuzz/hfuzz_target/release/build/typenum-42df380a6f1f8daf/out/op.rs
