@@ -1,0 +1,18 @@
+[package]
+name = "bencode-parser-fuzz"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+bencoder =  {path = "../libtorrent-rs/bencoder"}
+nom_bencode =  {path = "../nom-bencode"}
+honggfuzz = "0.5.51"
+
+[dev-dependencies]
+criterion = { version = "0.3.6", features = ["html_reports"] }
+
+[[bench]]
+name = "bencode_bench"
+harness = false
