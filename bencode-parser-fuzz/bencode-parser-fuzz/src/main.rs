@@ -26,9 +26,9 @@ fn parse_source_libtorrent(src: &[u8]) -> Result<Bencode, BencodeError> {
 
 fn to_bencode(value: Vec<Value>) -> Bencode {
     match value {
-        Value::Integer(value) => Bencode::BNumber(value),
-        Value::Bytes(value) => Bencode::BString(value),
-        Value::List(value) => Bencode::BList(value),
-        Value::Dictionary(value) => Bencode::BDict(value),
+        Value::Integer => Bencode::BNumber(value),
+        Value::Bytes => Bencode::BString(value),
+        Value::List => Bencode::BList(value),
+        Value::Dictionary => Bencode::BDict(value),
     }
 }
