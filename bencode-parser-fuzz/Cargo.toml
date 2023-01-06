@@ -8,6 +8,7 @@ edition = "2021"
 [dependencies]
 bencoder =  {path = "../libtorrent-rs/bencoder"}
 nom_bencode =  {path = "../nom-bencode"}
+walkdir = "2"
 honggfuzz = "0.5.51"
 
 [dev-dependencies]

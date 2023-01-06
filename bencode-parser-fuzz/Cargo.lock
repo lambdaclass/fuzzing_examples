@@ -33,6 +33,7 @@ dependencies = [
  "criterion",
  "honggfuzz",
  "nom_bencode",
+ "walkdir",
 ]
 
 [[package]]
