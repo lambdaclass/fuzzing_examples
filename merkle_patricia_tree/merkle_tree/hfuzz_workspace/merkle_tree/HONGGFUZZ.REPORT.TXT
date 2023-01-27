@@ -1,0 +1,50 @@
+=====================================================================
+TIME: 2023-01-27.14:22:57
+=====================================================================
+FUZZER ARGS:
+ mutationsPerRun : 5
+ externalCmd     : NULL
+ fuzzStdin       : FALSE
+ timeout         : 1 (sec)
+ ignoreAddr      : (nil)
+ ASLimit         : 0 (MiB)
+ RSSLimit        : 0 (MiB)
+ DATALimit       : 0 (MiB)
+ wordlistFile    : NULL
+ dynFileMethod   : 
+ fuzzTarget      : hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree 
+CRASH:
+DESCRIPTION: 
+ORIG_FNAME: 00000000000000000000000000000000.00000000.honggfuzz.cov
+FUZZ_FNAME: hfuzz_workspace/merkle_tree/SIGABRT.PC.fffff7e09eac.STACK.f5e14f403.CODE.-6.ADDR.0.INSTR.adrp_x0,_0x000000000013c000.fuzz
+PID: 91685
+SIGNAL: SIGABRT (6)
+PC: 0xfffff7e09eac
+FAULT ADDRESS: 0x0
+INSTRUCTION: adrp_x0,_0x000000000013c000
+STACK HASH: 0000000f5e14f403
+STACK:
+ <0x0000fffff7df6aa0> [func:UNKNOWN file: line:0 module:/lib/aarch64-linux-gnu/libc-2.31.so]
+ <0x0000aaaaaab01754> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaaae980> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaaea6fc> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaaff430> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaaff1ec> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaafdbc0> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaafef30> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaaafbb4> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaab14748> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaaaa09c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaac4308> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaac2b24> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaac2248> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaac2124> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaac3d18> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaac6758> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaaf9bbc> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaac672c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaac215c> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000fffff7df6e18> [func:UNKNOWN file: line:0 module:/lib/aarch64-linux-gnu/libc-2.31.so]
+ <0x0000aaaaaaab0170> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+ <0x0000aaaaaaab0170> [func:UNKNOWN file: line:0 module:/home/fuzzing/fuzzing_examples/merkle_tree/hfuzz_target/aarch64-unknown-linux-gnu/release/merkle_tree]
+=====================================================================
