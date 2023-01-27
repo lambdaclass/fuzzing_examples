@@ -11,7 +11,7 @@ fn main() {
         fuzz!(|data: &[u8]| {
             let nom_result = parse_source_nom(data).unwrap();
             let libtorrent_result = parse_source_libtorrent(data).unwrap();
-            
+
             assert_eq!(to_bencode(nom_result), libtorrent_result);
         });
     }
@@ -32,7 +32,7 @@ fn to_bencode(value: Vec<Value>) -> Bencode {
         [Value::Bytes(value),_] => to_string_bencode(value),
         [Value::List(value), _] => to_list_bencode(value),
         [Value::Dictionary(value), _] => to_dict_bencode(value),
-        [] | [_] | [_, _, _, ..] => to_bencode(value),
+        [] | [_] | [_, _, _, ..] => panic!("value doesn´t fit a bencode value"),
     }
 }
 
@@ -78,9 +78,8 @@ fn to_dict_bencode(value: &HashMap<&[u8], Value>) -> Bencode {
 fn hashmap_to_btreemap(hashmap: &HashMap<&[u8], Value>) -> BTreeMap<Vec<u8>, Bencode> {
     let mut btreemap: BTreeMap<Vec<u8>, Bencode> = BTreeMap::new();
 
-    btreemap = hashmap
+    hashmap
         .into_iter()
         .map(|(key, value)| (from_reference_to_vec(key), value_to_bencode(value)))
-        .collect();
-    btreemap
+        .collect()
 }
