@@ -22,7 +22,6 @@ fn main() {
                 reader,
                 "main",
                 false,
-                false,
                 "plain",
                 false,
                 &hint_processor,
@@ -35,7 +34,6 @@ pub fn cairo_fuzz_run(
     reader: impl Read,
     entrypoint: &str,
     trace_enabled: bool,
-    print_output: bool,
     layout: &str,
     proof_mode: bool,
     hint_executor: &dyn HintProcessor,
@@ -63,10 +61,6 @@ pub fn cairo_fuzz_run(
         cairo_runner.finalize_segments(&mut vm)?;
     }
     cairo_runner.relocate(&mut vm)?;
-
-    if print_output {
-        write_output(&mut cairo_runner, &mut vm)?;
-    }
 
     Ok(cairo_runner)
 }
