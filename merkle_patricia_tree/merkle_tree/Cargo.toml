@@ -16,6 +16,7 @@ hasher = "0.1.4"
 sha3 = "0.10.6"
 proptest = "1.0.0"
 patricia-merkle-tree = { git = "https://github.com/lambdaclass/merkle_patricia_tree", branch = "main" }
+rand = "0.8.5"
 
 
 [dev-dependencies]
