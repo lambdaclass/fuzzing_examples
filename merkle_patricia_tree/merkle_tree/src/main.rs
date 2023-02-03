@@ -7,8 +7,7 @@ use patricia_merkle_tree::PatriciaMerkleTree;
 use sha3::Keccak256;
 use proptest::prelude::*;
 use std::sync::Arc;
-use rand::Rng;
-use rand::rngs::ThreadRng;
+use rand::{rngs::StdRng, Rng, SeedableRng};
 
 const MAX_INPUT_SIZE: usize = 1024;
 
@@ -22,8 +21,8 @@ fn main() {
             let hasher = Arc::new(HasherKeccak::new());
             let mut trie = PatriciaTrie::new(Arc::clone(&memdb), Arc::clone(&hasher));
             let mut init_input: Vec<u8> = data.to_vec();
+            
             let inputs = mutate(&mut init_input);
-
 
             for input in inputs.iter() {
                 trie.insert(input.to_vec(), input.to_vec());
@@ -69,19 +68,21 @@ fn mutate(input:  &mut [u8]) -> Vec<Vec<u8>> {
 
     let mut vec = vec![];
 
-    let mut rng = rand::thread_rng();
-
     vec.push(input.to_vec());
 
-    for _ in 0..5 {
+    let mut rng = StdRng::seed_from_u64(1234567);
+
+    for _ in 0..6 {
         // Pick a random mutation strategy
-        let sel = rng.gen_range(0.. STRATEGIES.len() - 1).clone();
+        let sel = rng.gen_range(0..STRATEGIES.len() - 1);
+        //let sel = rand_number_in_range(0, STRATEGIES.len() - 1).clone();
             
         // Get the strategy
         let strat = STRATEGIES[sel];
 
         // Run the mutation strategy
         let new_input = strat(input);
+
         // Add new mutation to vec
         vec.push(new_input);
     };
@@ -91,30 +92,42 @@ fn mutate(input:  &mut [u8]) -> Vec<Vec<u8>> {
 
 fn rand_exp(min: usize, max: usize) -> usize {
 
-    let mut rnd = rand::thread_rng();
-
-    if rnd.gen_range(0..1) == 0 {
+    if rand_number_in_range(0,1) == 0 {
         // Half the time, provide uniform
-        rnd.gen_range(min..max)
+        rand_number_in_range(min,max)
     } else {
         // Pick an exponentially difficult random number
-        let x = rnd.gen_range(min..max);
-        rnd.gen_range(min..x)
+        let x = rand_number_in_range(min,max);
+        rand_number_in_range(min,x)
     }
 }
 
 fn rand_offset(input: &[u8]) -> usize {
 
-    let mut rng = rand::thread_rng();
+    let offset_range = input.len() - 1 as usize;
 
-    if !input.is_empty() {
+    if offset_range > 1{
         // just return a random index
-        rng.gen_range(0..(input.len() - 1 as usize))
+        rand_number_in_range(0,offset_range)
     } else {
         // Input is entirely empty, just return index 0 such that
         // things that insert into the input know that they should
         // just insert at 0.
         0
+    }
+}
+
+// generates a random number within a range
+fn rand_number_in_range(min: usize, max: usize) -> usize {
+
+    let mut rng = StdRng::seed_from_u64(1234567);
+    
+    if min == max {
+        // if there´s no range, return the same number
+        min
+    } else { 
+        let random = rng.gen_range(min..max);
+        random
     }
 }
 
@@ -130,8 +143,7 @@ fn shrink(input:  &mut [u8]) -> Vec<u8> {
     let can_remove = input.len() - offset;
 
     // Compute a maximum number of bytes to remove
-    let mut rng = rand::thread_rng();
-    let max_remove = if rng.gen_range(0..15) != 0 {
+    let max_remove = if rand_number_in_range(0,15) != 0 {
         // 15 in 16 chance of removing at most 16 bytes, this limits the
         // amount we remove in the most common case
         core::cmp::min(16, can_remove)
@@ -142,7 +154,7 @@ fn shrink(input:  &mut [u8]) -> Vec<u8> {
     };
 
     // Pick the amount of bytes to remove
-    let to_remove = rng.gen_range(1..max_remove);
+    let to_remove = rand_number_in_range(1,max_remove);
 
     // Remove the bytes from the input
     let mut binding = input.to_vec();
@@ -152,6 +164,7 @@ fn shrink(input:  &mut [u8]) -> Vec<u8> {
     new_input
 }
 
+/// Make space in the input, filling with zeros
 fn expand(input: &mut [u8]) -> Vec<u8> {
     // Pick a random offset to expand at
     let offset = rand_offset(input);
@@ -160,8 +173,7 @@ fn expand(input: &mut [u8]) -> Vec<u8> {
     let can_expand = input.len() + offset;
 
     // Compute a maximum number of expansion bytes
-    let mut rng = rand::thread_rng();
-    let max_expand = if rng.gen_range(0..15) != 0 {
+    let max_expand = if rand_number_in_range(0,15) != 0 {
         // 15 in 16 chance of capping expansion to 16 bytes
         core::cmp::min(16, can_expand)
     } else {
@@ -170,12 +182,14 @@ fn expand(input: &mut [u8]) -> Vec<u8> {
     };
 
     // Create what to expand with
-    let iter = core::iter::repeat(b'\0').take(rng.gen_range(1..max_expand)); 
+    let iter = core::iter::repeat(b'\0').take(rand_number_in_range(1,max_expand)); 
+
+    let mut new_input = input.to_owned();
     
     // Expand at `offset` with `iter`
-    input.to_vec().splice(offset..offset, iter);
+    new_input.to_vec().splice(offset..offset, iter);
 
-    input.to_vec()
+    new_input.to_vec()
 }
 
 /// Add or subtract a random amount with a random endianness from a random
@@ -194,12 +208,11 @@ fn add_sub(input: &mut [u8]) -> Vec<u8> {
 
     // Pick a random size of the add or subtract as a 1, 2, 4, or 8 byte
     // signed integer
-    let mut rng = rand::thread_rng();
     let intsize = match remain {
         1..=1                => 1,
-        2..=3                => 1 << rng.gen_range(0..1),
-        4..=7                => 1 << rng.gen_range(0..2),
-        8..=core::usize::MAX => 1 << rng.gen_range(0..3),
+        2..=3                => 1 << rand_number_in_range(0,1),
+        4..=7                => 1 << rand_number_in_range(0,2),
+        8..=core::usize::MAX => 1 << rand_number_in_range(0,3),
         _ => unreachable!(),
     };
 
@@ -213,27 +226,29 @@ fn add_sub(input: &mut [u8]) -> Vec<u8> {
     };
 
     // Convert the range to a random number from [-range, range]
-    let delta = rng.gen_range(0..range * 2) as i32 - range as i32;
+    let delta = rand_number_in_range(0,range * 2) as i32 - range as i32;
+
+    let mut new_input = input.to_owned();
 
     /// Macro to mutate bytes in the input as a `$ty`
     macro_rules! mutate {
         ($ty:ty) => {{
             // Interpret the `offset` as a `$ty`
             let tmp = <$ty>::from_ne_bytes(
-                input[offset..offset + intsize].try_into().unwrap());
+                new_input[offset..offset + intsize].try_into().unwrap());
 
             // Apply the delta, interpreting the bytes as a random
             // endianness
-            let tmp = if rng.gen_range(0..1) == 0 {
+            let tmp = if rand_number_in_range(0,1) == 0 {
                 tmp.wrapping_add(delta as $ty)
             } else {
                 tmp.swap_bytes().wrapping_add(delta as $ty).swap_bytes()
             };
 
             // Write the new value out to the input
-            input[offset..offset + intsize].copy_from_slice(
+            new_input[offset..offset + intsize].copy_from_slice(
                 &tmp.to_ne_bytes());
-            input.to_vec()
+            new_input.to_vec()
         }}
     }
 
@@ -259,18 +274,18 @@ fn set(input: &mut [u8]) -> Vec<u8> {
     // Pick offset to memset at
     let offset = rand_offset(input);
 
-    let mut rng = rand::thread_rng();
-
     // Pick random length to remainder of input
-    let len = rng.gen_range(1..input.len() - offset);
+    let len = rand_number_in_range(1,input.len() - offset);
 
     // Pick the value to memset
-    let chr = rng.gen_range(0..255) as u8;
+    let chr = rand_number_in_range(0,255) as u8;
 
+    let mut new_input = input.to_owned();
+   
     // Replace the selected bytes at the offset with `chr`
-    input[offset..offset + len].iter_mut().for_each(|x| *x = chr);
+    new_input[offset..offset + len].iter_mut().for_each(|x| *x = chr);
 
-    input.to_vec()
+    new_input.to_vec()
 }
 
 /// Swap two difference sequence of bytes in the input to different places
@@ -282,15 +297,13 @@ fn swap(input: &mut [u8]) -> Vec<u8> {
 
     // Pick two random ranges in the input and calculate the remaining
     // bytes for them
-    let mut rng = rand::thread_rng();
     let src    = rand_offset(input);
     let srcrem = input.len() - src;
     let dst    = rand_offset(input);
     let dstrem = input.len() - dst;
 
     // Pick a random length up to the max for both offsets
-    let mut rng = rand::thread_rng();
-    let len = rng.gen_range(1..core::cmp::min(srcrem, dstrem));
+    let len = rand_number_in_range(1,core::cmp::min(srcrem, dstrem));
 
     // Swap the ranges of bytes
     swap_ranges(input, src, dst, len)
@@ -356,15 +369,13 @@ fn copy(input: &mut [u8]) -> Vec<u8> {
     }
 
     // Pick a source and destination for a copy
-    let mut rng = rand::thread_rng();
     let src    = rand_offset(input);
     let srcrem = input.len() - src;
     let dst    = rand_offset(input);
     let dstrem = input.len() - dst;
 
     // Pick a random length up to the max for both offsets
-    let mut rng = rand::thread_rng();
-    let len = rng.gen_range(1..core::cmp::min(srcrem, dstrem));
+    let len = rand_number_in_range(1,core::cmp::min(srcrem, dstrem));
 
     // Perform a copy inplace in the input
     overwrite_inplace(input, src, len, dst)
@@ -373,23 +384,26 @@ fn copy(input: &mut [u8]) -> Vec<u8> {
 /// Take the bytes from `source` for `len` bytes in the input, and copy
 /// them to `dest`
 fn overwrite_inplace(input: &mut [u8], source: usize, len: usize, dest: usize) -> Vec<u8> {
+
+    let mut new_input = input.to_owned();
+
     // Nothing to do
-    if len == 0 || source == dest { return input.to_vec(); }
+    if len == 0 || source == dest { return new_input.to_vec(); }
 
     if source < dest {
         // Copy forwards
         for ii in 0..len {
-            input[dest + ii] = input[source + ii];
+            new_input[dest + ii] = new_input[source + ii];
         }
 
-        input.to_vec()
+        new_input.to_vec()
     } else {
         // Copy backwards
         for ii in (0..len).rev() {
-            input[dest + ii] = input[source + ii];
+            new_input[dest + ii] = new_input[source + ii];
         }
 
-        input.to_vec()
+        new_input.to_vec()
     }
 }
 
@@ -401,14 +415,12 @@ fn inter_splice(input: &mut [u8]) -> Vec<u8> {
     }
 
     // Pick a source and destination for an insertion
-    let mut rng = rand::thread_rng();
     let src    = rand_offset(input);
     let srcrem = input.len() - src;
     let dst    = rand_offset(input);
 
     // Pick a random length
-    let mut rng = rand::thread_rng();
-    let len = rng.gen_range(1..srcrem);
+    let len = rand_number_in_range(1,srcrem);
 
     // Perform an insertion inplace in the input
     insert_inplace(input, src, len, dst)
@@ -421,24 +433,29 @@ fn insert_inplace(input: &mut [u8], source: usize, len: usize, dest: usize)-> Ve
     if len == 0 || source == dest { return input.to_vec(); }
 
     // Cap the insertion to the max input size
-    let len = core::cmp::min(len, MAX_INPUT_SIZE - input.len());
+    let mut new_len = len;
+    if MAX_INPUT_SIZE < input.len() {
+        new_len = core::cmp::min(len, MAX_INPUT_SIZE);
+    } else {
+        new_len = core::cmp::min(len, MAX_INPUT_SIZE - input.len());
+    }
 
     // Create an interator to splice into the input
-    let rep = core::iter::repeat(b'\0').take(len);
+    let rep = core::iter::repeat(b'\0').take(new_len);
 
     // Expand at `dest` with `rep`, making room for the copy
     let mut input_vec = input.to_vec();
     input_vec.splice(dest..dest, rep);
 
     // Determine where the splice occurred
-    let split_point = dest.saturating_sub(source).min(len);
+    let split_point = dest.saturating_sub(source).min(new_len);
 
     for ii in 0..split_point {
         input_vec[dest + ii] = input_vec[source + ii];
     }
     
     for ii in split_point..len {
-        input_vec[dest + ii] = input_vec[source + ii + len];
+        input_vec[dest + ii] = input_vec[source + ii + new_len];
     }
 
     let new_input = &input_vec;
@@ -448,15 +465,14 @@ fn insert_inplace(input: &mut [u8], source: usize, len: usize, dest: usize)-> Ve
 
 /// Create 1 or 2 random bytes and insert them into the input
 fn insert_rand(input: &mut [u8]) -> Vec<u8> {
-    let mut rng = rand::thread_rng();
 
     // Pick some random values
-    let bytes = [rng.gen_range(0..255) as u8, rng.gen_range(0..255) as u8];
+    let bytes = [rand_number_in_range(0,255) as u8, rand_number_in_range(0,255) as u8];
 
 
     // Pick a random offset and length
     let offset = rand_offset(input);
-    let len = rng.gen_range(1..2);
+    let len = rand_number_in_range(1,2);
 
     // Insert the bytes
     insert(input, offset, &bytes[..len])
@@ -465,9 +481,13 @@ fn insert_rand(input: &mut [u8]) -> Vec<u8> {
 /// Insert `buf` at `offset` in the input. `buf` will be truncated to
 /// ensure the input stays within the maximum input size
 fn insert<'a>(input: &'a[u8], offset: usize, buf: &[u8]) -> Vec<u8> {
+    let mut len = 0;
     // Make sure we don't expand past the maximum input size
-    let len =
-        core::cmp::min(buf.len(), MAX_INPUT_SIZE - input.len());
+    if MAX_INPUT_SIZE < input.len() {
+        len = core::cmp::min(buf.len(), MAX_INPUT_SIZE);
+    } else {
+        len = core::cmp::min(buf.len(), MAX_INPUT_SIZE - input.len());
+    };
 
     // Splice in the `buf`
     input.to_vec().splice(offset..offset, buf[..len].iter().copied());
@@ -485,13 +505,12 @@ fn overwrite_rand(input: &mut [u8]) -> Vec<u8> {
     }
 
     // Pick some random values
-    let mut rng = rand::thread_rng();
-    let bytes = [rng.gen_range(0..255) as u8, rng.gen_range(0..255) as u8];
+    let bytes = [rand_number_in_range(0,255) as u8, rand_number_in_range(0,255) as u8];
 
     // Pick a random offset and length
     let offset = rand_offset(input);
     let len = core::cmp::min(input.len() - offset, 2);
-    let len = rng.gen_range(1..len);
+    let len = rand_number_in_range(1,len);
 
     // Overwrite the bytes
     let new_input = input;
