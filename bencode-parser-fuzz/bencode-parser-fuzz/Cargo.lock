@@ -4,9 +4,9 @@ version = 3
 
 [[package]]
 name = "arbitrary"
-version = "1.2.2"
+version = "1.2.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b0224938f92e7aef515fac2ff2d18bd1115c1394ddf4a092e0c87e8be9499ee5"
+checksum = "3e90af4de65aa7b293ef2d09daff88501eb254f58edde2e1ac02c82d873eadad"
 
 [[package]]
 name = "bencode-parser-fuzz"
@@ -20,6 +20,7 @@ dependencies = [
 [[package]]
 name = "bencoder"
 version = "0.1.0"
+source = "git+https://github.com/lambdaclass/libtorrent-rs?branch=main#6dc992b4e69ea7f4adac23f098fa091a2de2080c"
 
 [[package]]
 name = "honggfuzz"
@@ -68,9 +69,9 @@ checksum = "68354c5c6bd36d73ff3feceb05efa59b6acb7626617f4962be322a825e61f79a"
 
 [[package]]
 name = "nom"
-version = "7.1.2"
+version = "7.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e5507769c4919c998e69e49c839d9dc6e693ede4cc4290d6ad8b41d4f09c548c"
+checksum = "d273983c5a657a70a3e8f2a01329822f3b8c8172b73826411a55751e404a0a4a"
 dependencies = [
  "memchr",
  "minimal-lexical",
@@ -79,6 +80,7 @@ dependencies = [
 [[package]]
 name = "nom_bencode"
 version = "0.1.3"
+source = "git+https://github.com/edg-l/nom-bencode?branch=master#7b1111df0de379f0bf91b20a9318415a7b40d13d"
 dependencies = [
  "nom",
  "thiserror",
@@ -86,9 +88,9 @@ dependencies = [
 
 [[package]]
 name = "proc-macro2"
-version = "1.0.49"
+version = "1.0.51"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "57a8eca9f9c4ffde41714334dee777596264c7825420f521abc92b5b5deb63a5"
+checksum = "5d727cae5b39d21da60fa540906919ad737832fe0b1c165da3a34d6548c849d6"
 dependencies = [
  "unicode-ident",
 ]

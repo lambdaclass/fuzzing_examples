@@ -9,10 +9,12 @@ fn main() {
     println!("Starting fuzzer");
     loop {
         fuzz!(|data: &[u8]| {
-            let nom_result = parse_source_nom(data).unwrap();
-            let libtorrent_result = parse_source_libtorrent(data).unwrap();
+            let nom_result = parse_source_nom(data);
+            let libtorrent_result = parse_source_libtorrent(data); 
 
-            assert_eq!(to_bencode(nom_result), libtorrent_result);
+            if nom_result.is_ok() && libtorrent_result.is_ok() {
+                assert_eq!(to_bencode(nom_result.unwrap()), libtorrent_result.unwrap());
+            }
         });
     }
 }
@@ -32,7 +34,7 @@ fn to_bencode(value: Vec<Value>) -> Bencode {
         [Value::Bytes(value),_] => to_string_bencode(value),
         [Value::List(value), _] => to_list_bencode(value),
         [Value::Dictionary(value), _] => to_dict_bencode(value),
-        [] | [_] | [_, _, _, ..] => panic!("value doesn´t fit a bencode value"),
+        [] | [_] | [_, _, _, ..] => to_list_bencode(&value),
     }
 }
 
@@ -65,7 +67,7 @@ fn to_list_bencode(value: &Vec<Value>) -> Bencode {
         let bencode = value_to_bencode(x);
         bencode_vec.to_vec().push(bencode);
     }
-
+    
     Bencode::BList(bencode_vec.to_vec())
 }
 

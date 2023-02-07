@@ -6,6 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bencoder =  {path = "../../libtorrent-rs/bencoder"}
-nom_bencode =  {path = "../../nom-bencode"}
+bencoder =  { git = "https://github.com/lambdaclass/libtorrent-rs", branch = "main" }
+nom_bencode =  { git = "https://github.com/edg-l/nom-bencode", branch = "master" }
 honggfuzz = "0.5.51"
