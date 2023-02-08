@@ -3,6 +3,8 @@ extern crate honggfuzz;
 use nom_bencode::Value;
 use bencoder::bencode::{Bencode, BencodeError};
 use std::collections::{BTreeMap, HashMap};
+use nom_bencode::BencodeError as NomBencodeError;
+use nom::Err;
 
 
 fn main() {
@@ -19,7 +21,7 @@ fn main() {
     }
 }
 
-fn parse_source_nom(src: &[u8]) -> Result<Vec<nom_bencode::Value>, nom_bencode::Error<&[u8]>> {
+fn parse_source_nom(src: &[u8]) -> Result<Vec<nom_bencode::Value>, Err<NomBencodeError<&[u8]>>> {
     nom_bencode::parse(src)
 }
 
@@ -61,14 +63,20 @@ fn from_reference_to_vec(value: &[u8]) -> Vec<u8> {
 }
 
 fn to_list_bencode(value: &Vec<Value>) -> Bencode {
-    let bencode_vec = [];
 
-    for x in value {
-        let bencode = value_to_bencode(x);
-        bencode_vec.to_vec().push(bencode);
+    if value.len() == 1 {
+        value_to_bencode(&value[0])
+    } else {
+        let mut bencode_vec = Vec::new();
+
+        for x in value {
+            let bencode = value_to_bencode(x);
+            bencode_vec.push(bencode);
+        }
+
+        Bencode::BList(bencode_vec)
     }
-    
-    Bencode::BList(bencode_vec.to_vec())
+
 }
 
 fn to_dict_bencode(value: &HashMap<&[u8], Value>) -> Bencode {

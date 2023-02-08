@@ -14,6 +14,7 @@ version = "0.1.0"
 dependencies = [
  "bencoder",
  "honggfuzz",
+ "nom",
  "nom_bencode",
 ]
 
@@ -79,8 +80,8 @@ dependencies = [
 
 [[package]]
 name = "nom_bencode"
-version = "0.1.3"
-source = "git+https://github.com/edg-l/nom-bencode?branch=master#7b1111df0de379f0bf91b20a9318415a7b40d13d"
+version = "0.2.0"
+source = "git+https://github.com/edg-l/nom-bencode?branch=master#4a5c5cd1162ca3979917a507351e6ca6ed1bf9cc"
 dependencies = [
  "nom",
  "thiserror",
