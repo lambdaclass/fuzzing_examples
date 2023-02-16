@@ -1,0 +1,49 @@
+=====================================================================
+TIME: 2023-02-16.21:34:35
+=====================================================================
+FUZZER ARGS:
+ mutationsPerRun : 5
+ externalCmd     : NULL
+ fuzzStdin       : FALSE
+ timeout         : 1 (sec)
+ ignoreAddr      : (nil)
+ ASLimit         : 0 (MiB)
+ RSSLimit        : 0 (MiB)
+ DATALimit       : 0 (MiB)
+ wordlistFile    : json.dict
+ dynFileMethod   : 
+ fuzzTarget      : hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer 
+CRASH:
+DESCRIPTION: 
+ORIG_FNAME: 00000000000000000000000000000000.00000000.honggfuzz.cov
+FUZZ_FNAME: hfuzz_workspace/starknet_fuzzer/SIGABRT.PC.fffff7d5eeac.STACK.1bb8c7d06a.CODE.-6.ADDR.0.INSTR.adrp_x0,_0x000000000013c000.fuzz
+PID: 89809
+SIGNAL: SIGABRT (6)
+PC: 0xfffff7d5eeac
+FAULT ADDRESS: 0x0
+INSTRUCTION: adrp_x0,_0x000000000013c000
+STACK HASH: 0000001bb8c7d06a
+STACK:
+ <0x0000fffff7d4baa0> [func:UNKNOWN file: line:0 module:/lib/aarch64-linux-gnu/libc-2.31.so]
+ <0x0000aaaaaad0643c> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac3f0c> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaacee3ac> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaad0423c> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaad03ff8> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaad029cc> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaad03d3c> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac5464> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac564c> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac87e8> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac5f90> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaacc0bc> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac5cb4> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac5efc> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac5d6c> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaacfdaac> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac5d40> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac5cec> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000fffff7d4be18> [func:UNKNOWN file: line:0 module:/lib/aarch64-linux-gnu/libc-2.31.so]
+ <0x0000aaaaaaac5b20> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+ <0x0000aaaaaaac5b20> [func:UNKNOWN file: line:0 module:/code/fuzzing/fuzzing_examples/starknet_fuzzer/hfuzz_target/aarch64-unknown-linux-gnu/release/starknet_fuzzer]
+=====================================================================
