@@ -75,7 +75,6 @@ fn mutate(input:  &mut [u8]) -> Vec<Vec<u8>> {
     for _ in 0..6 {
         // Pick a random mutation strategy
         let sel = rng.gen_range(0..STRATEGIES.len() - 1);
-        //let sel = rand_number_in_range(0, STRATEGIES.len() - 1).clone();
             
         // Get the strategy
         let strat = STRATEGIES[sel];
