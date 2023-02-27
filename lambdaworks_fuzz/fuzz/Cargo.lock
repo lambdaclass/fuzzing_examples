@@ -72,6 +72,8 @@ name = "lambdaworks_fuzz"
 version = "0.1.0"
 dependencies = [
  "arbitrary",
+ "derive_arbitrary",
+ "lambdaworks-math",
 ]
 
 [[package]]
