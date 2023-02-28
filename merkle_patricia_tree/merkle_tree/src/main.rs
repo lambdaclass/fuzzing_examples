@@ -204,9 +204,9 @@ fn add_sub(input: &mut [u8], seed: u64) -> Vec<u8> {
     // signed integer
     let intsize = match remain {
         1..=1                => 1,
-        2..=3                => 1 << rand_number_in_range(0,1, seed),
-        4..=7                => 1 << rand_number_in_range(0,2, seed),
-        8..=core::usize::MAX => 1 << rand_number_in_range(0,3, seed),
+        2..=3                => 1 << rand_number_in_range(0,2, seed),
+        4..=7                => 1 << rand_number_in_range(0,3, seed),
+        8..=core::usize::MAX => 1 << rand_number_in_range(0,4, seed),
         _ => unreachable!(),
     };
 
