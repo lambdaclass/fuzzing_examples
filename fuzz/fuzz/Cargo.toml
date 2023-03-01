@@ -7,4 +7,5 @@ edition = "2021"
 
 [dependencies]
 honggfuzz = "0.5.51"
-cairo-rs =  {path = "../"}
+cairo-vm =  { git = "https://github.com/lambdaclass/cairo-rs.git", branch = "main" }
+
