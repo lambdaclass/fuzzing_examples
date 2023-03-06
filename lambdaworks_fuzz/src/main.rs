@@ -16,16 +16,16 @@ mod tests {
 
         let mut unstructured = Unstructured::new(raw_data);
 
+        // this creates an ProjectivePoint::<BLS12377Curve> using the arbitrary trait and the raw data file, then 
+        // operates the curve with itself and should give a different curve but the curve should remain the same.
         if let Ok(curve) = ProjectivePoint::<BLS12377Curve>::arbitrary(&mut unstructured) {
-            println!("curveeeeeee: {:?}", curve);
+
+            println!("curve: {:?}", curve);
             let curve2 = curve.operate_with(&curve);
-            println!("curve222222: {:?}", curve2);
+            println!("curve2: {:?}", curve2);
             assert_ne!(&curve2, &curve);
             assert_eq!(&curve, &curve);
-            assert!(false);
-        }
-        // let curve2 = curve.operate_with(&curve);
-        // assert_ne!(&curve2, &curve);
-        // assert_eq!(&curve, &curve);
+
+        }    
     }
 }
