@@ -1,0 +1,12 @@
+[package]
+name = "asn1"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+asn1 = "0.12.3"
+honggfuzz = "0.5.51"
+yasna = "0.5.0"
+simple_asn1 = "0.6.2"
