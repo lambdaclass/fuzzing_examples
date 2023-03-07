@@ -10,19 +10,19 @@ Fuzzing Examples
 Tools
 ---
 
-This is a compilation of fuzzers written in rust that use either honggfuzz or cargofuzz as a tool.
+This is a compilation of fuzzers written in Rust that use either Honggfuzz or Cargofuzz as a tool.
 
-depending on which tool is being used the fuzzer starts to run differently.
+Depending on which tool is being used the fuzzer runs differently.
 
-to see the usage of this libraries check their documentation:
+To see the usage of this libraries check their documentation:
  * [honggfuzz](https://github.com/google/honggfuzz)
  * [cargofuzz](https://github.com/rust-fuzz/cargo-fuzz)
 
 ## User Guide
 
-depending on the fuzzer use the following commands:
+Depending on the fuzzer use the following commands:
 
-### if the fuzzer uses hongfuzz
+### If the Fuzzer Uses Honggfuzz
 
 * to run it with total random data use: 
 `cargo hfuzz run <fuzzer name>`
@@ -43,16 +43,13 @@ depending on the fuzzer use the following commands:
 Fuzzers structure 
 ---
 
-In this repo you´ll find the fuzzers with the following structure:
+In this repo the fuzzers have the following structure:
 
 ### if the fuzzer uses honggfuzz 
 
 * The  ***src*** folder contains the file main with the fuzzer 
 * The ***hfuzz_workspace*** folder contains a REPORT file with the report of the crashes the fuzzer found, this folder is updated each time the fuzzer finds a new crash and has the information about the crash along with the name of the input that triggered it. Also contains the input files that triggers the errors, the file names starts with SIGABRT
-* also contains the ***cargo.toml*** and ***cargo.lock***
 
 ### if the fuzzer uses cargofuzz 
 
 * the ***fuzz_targets*** contains the files with the fuzzers
-* also contains the ***cargo.toml*** and ***cargo.lock***
-
