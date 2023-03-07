@@ -1,0 +1,214 @@
+=====================================================================
+TIME: 2023-02-07.19:02:49
+=====================================================================
+FUZZER ARGS:
+ mutationsPerRun : 5
+ externalCmd     : NULL
+ fuzzStdin       : FALSE
+ timeout         : 1 (sec)
+ ignoreAddr      : (nil)
+ ASLimit         : 0 (MiB)
+ RSSLimit        : 0 (MiB)
+ DATALimit       : 0 (MiB)
+ wordlistFile    : NULL
+ dynFileMethod   : 
+ fuzzTarget      : hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz 
+CRASH:
+DESCRIPTION: 
+ORIG_FNAME: 00000000000000000000000000000000.00000000.honggfuzz.cov
+FUZZ_FNAME: hfuzz_workspace/bencode-parser-fuzz/SIGABRT.PC.fffff7e09eac.STACK.1b380215cf.CODE.-6.ADDR.0.INSTR.adrp_x0,_0x000000000013c000.fuzz
+PID: 52340
+SIGNAL: SIGABRT (6)
+PC: 0xfffff7e09eac
+FAULT ADDRESS: 0x0
+INSTRUCTION: adrp_x0,_0x000000000013c000
+STACK HASH: 0000001b380215cf
+STACK:
+ <0x0000fffff7df6aa0> [func:UNKNOWN file: line:0 module:/lib/aarch64-linux-gnu/libc-2.31.so]
+ <0x0000aaaaaaae79b4> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaae7420> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000fffff7ffc7c0> [func:UNKNOWN file: line:0 module:[vdso]]
+ <0x0000aaaaaaabeb90> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+=====================================================================
+=====================================================================
+TIME: 2023-02-07.19:02:49
+=====================================================================
+FUZZER ARGS:
+ mutationsPerRun : 5
+ externalCmd     : NULL
+ fuzzStdin       : FALSE
+ timeout         : 1 (sec)
+ ignoreAddr      : (nil)
+ ASLimit         : 0 (MiB)
+ RSSLimit        : 0 (MiB)
+ DATALimit       : 0 (MiB)
+ wordlistFile    : NULL
+ dynFileMethod   : 
+ fuzzTarget      : hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz 
+CRASH:
+DESCRIPTION: 
+ORIG_FNAME: 00000000000000000000000000000000.00000000.honggfuzz.cov
+FUZZ_FNAME: hfuzz_workspace/bencode-parser-fuzz/SIGSEGV.PC.aaaaaaabeb90.STACK.18f6234da3.CODE.1.ADDR.ffffff7ffff0.INSTR.stp_q0,_q1,_[sp].fuzz
+PID: 52341
+SIGNAL: SIGSEGV (11)
+PC: 0xaaaaaaabeb90
+FAULT ADDRESS: 0xffffff7ffff0
+INSTRUCTION: stp_q0,_q1,_[sp]
+STACK HASH: 00000018f6234da3
+STACK:
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabc434> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+ <0x0000aaaaaaabeb98> [func:UNKNOWN file: line:0 module:/code/fuzzer/fuzzing_examples/bencode-parser-fuzz/bencode-parser-fuzz/hfuzz_target/aarch64-unknown-linux-gnu/release/bencode-parser-fuzz]
+=====================================================================
