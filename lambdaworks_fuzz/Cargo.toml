@@ -1,0 +1,11 @@
+[package]
+name = "lambdaworks_fuzz"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+lambdaworks-math = { git = "https://github.com/lambdaclass/lambdaworks.git", branch = "implement_arbitraty_trait", features =  ["arbitrary"] }
+arbitrary = { version = "1", features = ["derive"] }
+derive_arbitrary = "1.2.3"
