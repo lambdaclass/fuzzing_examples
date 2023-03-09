@@ -22,10 +22,6 @@ name = "decode"
 path = "fuzz_targets/decode.rs"
 
 [[bin]]
-name = "roundtrip"
-path = "fuzz_targets/roundtrip.rs"
-
-[[bin]]
 name = "encode"
 path = "fuzz_targets/encode.rs"
 test = false
