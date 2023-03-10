@@ -2,7 +2,7 @@
 
 Fuzzing example with honggfuzz for the asn1 crate.
 
-From the [asn1](https://crates.io/crates/asn1) readme:
+From the [asn1](https://crates.io/crates/asn1) README:
 > This is a Rust library for parsing and generating ASN.1 data (DER only).
 
 
