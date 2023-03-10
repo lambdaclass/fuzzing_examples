@@ -1,9 +1,19 @@
 use honggfuzz::fuzz;
-use simple_asn1::*;
+//use simple_asn1::*;
 
 fn main() {
     loop {
-        fuzz!(|data: &[u8]| {
+        fuzz!(|seed: &[u8]| {
+            let data: Vec<u8> = if seed.len() == 1 || seed.len() > 16 {
+                vec![ 0x30, 0x06, 0x02, 0x01, seed[0], 0x02, 0x01, seed[0] ]
+            } else {
+                let mut sequence_decl = vec![ 0x30, (seed.len() + 4) as u8, 0x02, (seed.len() / 2) as u8 ];
+                sequence_decl.extend(&seed[..seed.len() / 2]);
+                sequence_decl.extend(vec![0x02, (seed.len() - seed.len() / 2) as u8 ]);
+                sequence_decl.extend(&seed[seed.len() / 2..]);
+                sequence_decl   
+            };
+
             let result_asn1: asn1::ParseResult<_> = asn1::parse(&data, |d| {
                 return d.read_element::<asn1::Sequence>()?.parse(|d| {
                     let r = d.read_element::<u64>()?;
@@ -11,7 +21,8 @@ fn main() {
                     return Ok((r, s));
                 })
             });
-            match result_asn1 {
+            result_asn1.unwrap();
+            /*match result_asn1 {
                 Ok(sk) => { 
                     // ... use sk ...
                     let (ui1, ui2) = sk;
@@ -25,7 +36,7 @@ fn main() {
                         "{}", e
                     )
                 },
-            }
+            }*/
         });
     }
 }
@@ -34,14 +45,27 @@ fn main() {
 mod test {
     #[test]
     fn try_crash() {
-        let data: [u8; 8] = [
-            0x10, 0x06, 0x80, 0x01, 
-            0x2f, 0x81, 0x01, 0xc8, 
+        let seed: [u8; 1] = [
+            0xd7
         ];
+        let data: Vec<u8> = if seed.len() == 1 || seed.len() > 16 {
+            vec![ 0x30, 0x06, 0x02, 0x01, seed[0], 0x02, 0x01, seed[0] ]
+        } else {
+            let mut sequence_decl = vec![ 0x30, (seed.len() + 4) as u8, 0x02, (seed.len() / 2) as u8 ];
+            sequence_decl.extend(&seed[..seed.len() / 2]);
+            sequence_decl.extend(vec![0x02, (seed.len() - seed.len() / 2) as u8 ]);
+            sequence_decl.extend(&seed[seed.len() / 2..]);
+            sequence_decl   
+        };
+
+        for n in data.iter() {
+            print!("{n:x} ");
+        }
+        println!("");
         let result_asn1: asn1::ParseResult<_> = asn1::parse(&data, |d| {
             return d.read_element::<asn1::Sequence>()?.parse(|d| {
-                let r = d.read_element::<u8>()?;
-                let s = d.read_element::<u8>()?;
+                let r = d.read_element::<u64>()?;
+                let s = d.read_element::<u64>()?;
                 return Ok((r, s));
             })
         });
