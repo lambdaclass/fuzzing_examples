@@ -1,6 +1,6 @@
 ### Deflate fuzzer
 
-Diferential fuzzing example for the crates: [libflate](https://crates.io/crates/libflate) and [inflate](https://crates.io/crates/inflate) using `cargo-fuzz`. Both libraries decode data compressed with the [DEFLATE](https://en.wikipedia.org/wiki/Deflate) algorithm, libflate also allows for encoding.
+Differential fuzzing example for the crates: [libflate](https://crates.io/crates/libflate) and [inflate](https://crates.io/crates/inflate) using `cargo-fuzz`. Both libraries decode data compressed with the [DEFLATE](https://en.wikipedia.org/wiki/Deflate) algorithm, libflate also allows for encoding.
 
 ## How to run
 

@@ -2,7 +2,7 @@
 
 Fuzzing example with honggfuzz for the tiff crate.
 
-From the [tiff](https://crates.io/crates/tiff) readme:
+From the [tiff](https://crates.io/crates/tiff) README:
 > TIFF decoding and encoding library in pure Rust
 
 

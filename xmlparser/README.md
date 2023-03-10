@@ -2,7 +2,7 @@
 
 Fuzzing example with honggfuzz for the xmlparser crate.
 
-From the [xmlparser](https://crates.io/crates/xmlparser) readme:
+From the [xmlparser](https://crates.io/crates/xmlparser) README:
 > xmlparser is a low-level, pull-based, zero-allocation XML 1.0 parser.
 
 

@@ -2,8 +2,8 @@
 
 Fuzzing example with honggfuzz for the Patricia Merkle Tree project.
 
-From the [`merke_patricia_trie`](https://github.com/lambdaclass/merkle_patricia_tree) readme:
-> Implementation of Ethereum's Patricia Merkle tree in Rust
+From the [`merke_patricia_tree`](https://github.com/lambdaclass/merkle_patricia_tree) README:
+> Implementation of Ethereum's Patricia Merkle Tree in Rust
 
 
 ## How to run
