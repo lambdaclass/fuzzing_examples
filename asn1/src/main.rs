@@ -1,11 +1,10 @@
 use honggfuzz::fuzz;
 use simple_asn1::*;
-use asn1::*;
 
 fn main() {
     loop {
         fuzz!(|data: &[u8]| {
-            let result_asn1: asn1::ParseResult<_> = asn1::parse(data, |d| {
+            let result_asn1: asn1::ParseResult<_> = asn1::parse(&data, |d| {
                 return d.read_element::<asn1::Sequence>()?.parse(|d| {
                     let r = d.read_element::<u64>()?;
                     let s = d.read_element::<u64>()?;
@@ -28,5 +27,24 @@ fn main() {
                 },
             }
         });
+    }
+}
+
+#[cfg(test)]
+mod test {
+    #[test]
+    fn try_crash() {
+        let data: [u8; 8] = [
+            0x10, 0x06, 0x80, 0x01, 
+            0x2f, 0x81, 0x01, 0xc8, 
+        ];
+        let result_asn1: asn1::ParseResult<_> = asn1::parse(&data, |d| {
+            return d.read_element::<asn1::Sequence>()?.parse(|d| {
+                let r = d.read_element::<u8>()?;
+                let s = d.read_element::<u8>()?;
+                return Ok((r, s));
+            })
+        });
+        assert!(matches!(result_asn1, Ok(_)));
     }
 }
