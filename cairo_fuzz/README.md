@@ -2,7 +2,7 @@
 
 Fuzzing example with honggfuzz for the cairo-rs project.
 
-From the [cairo-rs](https://github.com/lambdaclass/cairo-rs) readme:
+From the [cairo-rs](https://github.com/lambdaclass/cairo-rs) README:
 > A faster and safer implementation of the Cairo VM in Rust
 
 
