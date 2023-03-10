@@ -8,4 +8,4 @@ From the library's readme:
 ## How to run
 
 Run any of the targets with: `cargo +nightly fuzz run decode`
-The available targets are `decode`, `encode` and `roundtrip`
+The available targets are `decode` and `encode`

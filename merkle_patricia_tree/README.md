@@ -8,4 +8,5 @@ From the [`merke_patricia_trie`](https://github.com/lambdaclass/merkle_patricia_
 
 ## How to run
 
-Simply run the command `cargo hfuzz run merkle_tree`
+move to `cd merkle_tree`
+then run `cargo hfuzz run merkle_tree`
