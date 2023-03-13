@@ -1,6 +1,6 @@
 use honggfuzz::fuzz;
 
-// This fuzzer tests the following DER strcuture:
+// This fuzzer tests the following DER structure:
 // SEQUENCE(
 //     INTEGER (signed, 64 bits)
 //     INTEGER (signed, 64 bits)
