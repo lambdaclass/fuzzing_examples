@@ -1,12 +1,18 @@
 #[macro_use]
 extern crate honggfuzz;
+use arbitrary::Arbitrary;
 use cairo_vm::cairo_run;
-use std::{io::Write, path::PathBuf, fs::{remove_file, File}};
 use cairo_vm::{
     hint_processor::builtin_hint_processor::builtin_hint_processor_definition::BuiltinHintProcessor,
-    vm::errors::{trace_errors::TraceError, cairo_run_errors::CairoRunError, runner_errors::RunnerError}
+    vm::errors::{
+        cairo_run_errors::CairoRunError, runner_errors::RunnerError, trace_errors::TraceError,
+    },
 };
-use arbitrary::Arbitrary; 
+use std::{
+    fs::{remove_file, File},
+    io::Write,
+    path::PathBuf,
+};
 
 #[derive(Arbitrary)]
 struct Args {
@@ -34,8 +40,8 @@ fn main() {
                     return;
                 }
                 match cairo_main(args) {
-                    Ok(_) => {},
-                    Err(e) => println!("{e:?}")
+                    Ok(_) => {}
+                    Err(e) => println!("{e:?}"),
                 }
             });
         });
