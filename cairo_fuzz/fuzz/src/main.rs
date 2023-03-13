@@ -1,80 +1,85 @@
 #[macro_use]
 extern crate honggfuzz;
 use cairo_vm::cairo_run;
-use std::io::{BufReader, Read};
-use cairo_vm::hint_processor::builtin_hint_processor::builtin_hint_processor_definition::{
-    BuiltinHintProcessor, HintFunc,
+use std::{io::Write, path::PathBuf, fs::{remove_file, File}};
+use cairo_vm::{
+    hint_processor::builtin_hint_processor::builtin_hint_processor_definition::BuiltinHintProcessor,
+    vm::errors::{trace_errors::TraceError, cairo_run_errors::CairoRunError, runner_errors::RunnerError}
 };
-use cairo_vm::hint_processor::hint_processor_definition::HintProcessor;
-use cairo_vm::vm::{runners::cairo_runner::CairoRunner, 
-    security::verify_secure_runner,
-    errors::{
-    cairo_run_errors::CairoRunError, runner_errors::RunnerError, vm_exception::VmException,
-    }
-};
-use cairo_vm::types::program::Program;
-use cairo_vm::vm::vm_core::VirtualMachine;
-use cairo_vm::cairo_run::write_output;
-use cairo_vm::cairo_run::CairoRunConfig;
+use arbitrary::Arbitrary; 
 
-
+#[derive(Arbitrary)]
+struct Args {
+    filename: PathBuf,
+    trace_file: Option<PathBuf>,
+    print_output: bool,
+    entrypoint: String,
+    #[allow(dead_code)]
+    trace: Option<PathBuf>,
+    memory_file: Option<PathBuf>,
+    layout: String,
+    proof_mode: bool,
+    secure_run: Option<bool>,
+}
 
 fn main() {
     loop {
-        fuzz!(|data: &[u8]| {
-            let reader = BufReader::new(data);
-            let mut hint_processor = BuiltinHintProcessor::new_empty();
-            let cairo_run_config = CairoRunConfig::default();
-            cairo_fuzz_run(
-                reader,
-                &cairo_run_config,
-                &mut hint_processor,
-            );
+        fuzz!(|args: Args| {
+            fuzz!(|program_bytes: &[u8]| {
+                let file = File::create(&args.filename);
+                if matches!(file, Err(_)) {
+                    return;
+                }
+                if matches!(file.unwrap().write_all(program_bytes), Err(_)) {
+                    return;
+                }
+                match cairo_main(args) {
+                    Ok(_) => {},
+                    Err(e) => println!("{e:?}")
+                }
+            });
         });
     }
 }
 
-pub fn cairo_fuzz_run(
-    reader: impl Read,
-    cairo_run_config: &CairoRunConfig,
-    hint_executor: &mut dyn HintProcessor,
-) -> Result<CairoRunner, CairoRunError> {
-    
-    let program = match Program::from_reader(reader, Some(cairo_run_config.entrypoint)) {
-        Ok(program) => program,
-        Err(error) => return Err(CairoRunError::Program(error)),
+fn cairo_main(args: Args) -> Result<(), CairoRunError> {
+    let trace_enabled = args.trace_file.is_some();
+    let mut hint_executor = BuiltinHintProcessor::new_empty();
+    let cairo_run_config = cairo_run::CairoRunConfig {
+        entrypoint: &args.entrypoint,
+        trace_enabled,
+        print_output: args.print_output,
+        layout: &args.layout,
+        proof_mode: args.proof_mode,
+        secure_run: args.secure_run,
     };
+    let cairo_runner =
+        match cairo_run::cairo_run(&args.filename, &cairo_run_config, &mut hint_executor) {
+            Ok(runner) => runner,
+            Err(error) => {
+                println!("{error}");
+                return Err(error);
+            }
+        };
 
-    let secure_run = cairo_run_config
-        .secure_run
-        .unwrap_or(!cairo_run_config.proof_mode);
-
-    let mut cairo_runner = CairoRunner::new(
-        &program,
-        cairo_run_config.layout,
-        cairo_run_config.proof_mode,
-    )?;
-    let mut vm = VirtualMachine::new(cairo_run_config.trace_enabled);
-    let end = cairo_runner.initialize(&mut vm)?;
-
-    cairo_runner
-        .run_until_pc(end, &mut vm, hint_executor)
-        .map_err(|err| VmException::from_vm_error(&cairo_runner, &vm, err))?;
-    cairo_runner.end_run(false, false, &mut vm, hint_executor)?;
-
-    vm.verify_auto_deductions()?;
-    cairo_runner.read_return_values(&mut vm)?;
-    if cairo_run_config.proof_mode {
-        cairo_runner.finalize_segments(&mut vm)?;
-    }
-    if secure_run {
-        verify_secure_runner(&cairo_runner, true, &mut vm)?;
-    }
-    cairo_runner.relocate(&mut vm)?;
-
-    if cairo_run_config.print_output {
-        write_output(&mut cairo_runner, &mut vm)?;
+    if let Some(trace_path) = args.trace_file {
+        let relocated_trace = cairo_runner
+            .relocated_trace
+            .as_ref()
+            .ok_or(CairoRunError::Trace(TraceError::TraceNotEnabled))?;
+        match cairo_run::write_binary_trace(relocated_trace, &trace_path) {
+            Ok(()) => (),
+            Err(_e) => return Err(CairoRunError::Runner(RunnerError::WriteFail)),
+        }
     }
 
-    Ok(cairo_runner)
+    if let Some(memory_path) = args.memory_file {
+        match cairo_run::write_binary_memory(&cairo_runner.relocated_memory, &memory_path) {
+            Ok(()) => (),
+            Err(_e) => return Err(CairoRunError::Runner(RunnerError::WriteFail)),
+        }
+    }
+
+    let _ = remove_file(&args.filename);
+    Ok(())
 }
