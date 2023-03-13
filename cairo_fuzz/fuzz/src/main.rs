@@ -16,7 +16,7 @@ use std::{
 
 #[derive(Arbitrary)]
 struct Args {
-    filename: PathBuf,
+    filename: u64,
     trace_file: Option<PathBuf>,
     print_output: bool,
     entrypoint: String,
@@ -32,23 +32,25 @@ fn main() {
     loop {
         fuzz!(|args: Args| {
             fuzz!(|program_bytes: &[u8]| {
-                let file = File::create(&args.filename);
+                let filename = PathBuf::from(args.filename.to_string());
+                let file = File::create(&filename);
                 if matches!(file, Err(_)) {
                     return;
                 }
                 if matches!(file.unwrap().write_all(program_bytes), Err(_)) {
                     return;
                 }
-                match cairo_main(args) {
+                match cairo_main(&args) {
                     Ok(_) => {}
                     Err(e) => println!("{e:?}"),
                 }
+                let _ = remove_file(filename);
             });
         });
     }
 }
 
-fn cairo_main(args: Args) -> Result<(), CairoRunError> {
+fn cairo_main(args: &Args) -> Result<(), CairoRunError> {
     let trace_enabled = args.trace_file.is_some();
     let mut hint_executor = BuiltinHintProcessor::new_empty();
     let cairo_run_config = cairo_run::CairoRunConfig {
@@ -60,7 +62,7 @@ fn cairo_main(args: Args) -> Result<(), CairoRunError> {
         secure_run: args.secure_run,
     };
     let cairo_runner =
-        match cairo_run::cairo_run(&args.filename, &cairo_run_config, &mut hint_executor) {
+        match cairo_run::cairo_run(&PathBuf::from(args.filename.to_string()), &cairo_run_config, &mut hint_executor) {
             Ok(runner) => runner,
             Err(error) => {
                 println!("{error}");
@@ -68,7 +70,7 @@ fn cairo_main(args: Args) -> Result<(), CairoRunError> {
             }
         };
 
-    if let Some(trace_path) = args.trace_file {
+    if let Some(trace_path) = &args.trace_file {
         let relocated_trace = cairo_runner
             .relocated_trace
             .as_ref()
@@ -79,13 +81,12 @@ fn cairo_main(args: Args) -> Result<(), CairoRunError> {
         }
     }
 
-    if let Some(memory_path) = args.memory_file {
+    if let Some(memory_path) = &args.memory_file {
         match cairo_run::write_binary_memory(&cairo_runner.relocated_memory, &memory_path) {
             Ok(()) => (),
             Err(_e) => return Err(CairoRunError::Runner(RunnerError::WriteFail)),
         }
     }
 
-    let _ = remove_file(&args.filename);
     Ok(())
 }
