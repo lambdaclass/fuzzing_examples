@@ -1,5 +1,24 @@
 use honggfuzz::fuzz;
-//use simple_asn1::*;
+
+// This fuzzer tests the following DER strcuture:
+// SEQUENCE(
+//     INTEGER (signed, 64 bits)
+//     INTEGER (signed, 64 bits)
+// )
+// In DER this is encoded as such:
+// 0x30 | 0xSS | 0x02 | 0xI1 | ... | 0x02 | 0xI2 | ... 
+// 0x30 is the Sequence tag, this means the following bytes represent a sequence.
+// The following byte 0xSS tells us how many bytes we should read: for example if we had a 0x03,
+// that means the next 3 bytes belong to the Sequence.
+//
+// 0x02 is the Integer tag, also followed by the size in bytes of the integer 0xI1 and 0xI2. The
+// bytes are written in big endian format.
+//
+// Something else to keep in mind is that -1 and 0 can only be represented as a single 0xFF and 0x00 respectively.
+//
+// To recap with an example:
+// SEQUENCE (4, 1233)
+// encoding: 0x30 0x07 | 0x02 0x01 0x04 | 0x02 0x02 0x04 0xD1
 
 fn main() {
     loop {
