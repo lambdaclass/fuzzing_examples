@@ -16,7 +16,7 @@ use std::{
 
 #[derive(Arbitrary)]
 struct Args {
-    filename: u64,
+    filename: u32,
     trace_file: Option<PathBuf>,
     print_output: bool,
     entrypoint: String,
@@ -30,22 +30,31 @@ struct Args {
 
 fn main() {
     loop {
-        fuzz!(|args: Args| {
-            fuzz!(|program_bytes: &[u8]| {
-                let filename = PathBuf::from(args.filename.to_string());
-                let file = File::create(&filename);
-                if matches!(file, Err(_)) {
-                    return;
-                }
-                if matches!(file.unwrap().write_all(program_bytes), Err(_)) {
-                    return;
-                }
-                match cairo_main(&args) {
-                    Ok(_) => {}
-                    Err(e) => println!("{e:?}"),
-                }
-                let _ = remove_file(filename);
-            });
+        fuzz!(|program_bytes: &[u8]| {
+            let args = Args {
+                filename: rand::random::<u32>(),
+                trace_file: None,
+                print_output: true,
+                entrypoint: "main".to_string(),
+                trace: None,
+                memory_file: None,
+                layout: "all".to_string(),
+                proof_mode: false,
+                secure_run: None,
+            };
+            let filename = PathBuf::from(args.filename.to_string());
+            let file = File::create(&filename);
+            if matches!(file, Err(_)) {
+                return;
+            }
+            if matches!(file.unwrap().write_all(program_bytes), Err(_)) {
+                return;
+            }
+            match cairo_main(&args) {
+                Ok(_) => {}
+                Err(e) => println!("{e:?}"),
+            }
+            let _ = remove_file(filename);
         });
     }
 }
@@ -61,14 +70,17 @@ fn cairo_main(args: &Args) -> Result<(), CairoRunError> {
         proof_mode: args.proof_mode,
         secure_run: args.secure_run,
     };
-    let cairo_runner =
-        match cairo_run::cairo_run(&PathBuf::from(args.filename.to_string()), &cairo_run_config, &mut hint_executor) {
-            Ok(runner) => runner,
-            Err(error) => {
-                println!("{error}");
-                return Err(error);
-            }
-        };
+    let cairo_runner = match cairo_run::cairo_run(
+        &PathBuf::from(args.filename.to_string()),
+        &cairo_run_config,
+        &mut hint_executor,
+    ) {
+        Ok(runner) => runner,
+        Err(error) => {
+            println!("{error}");
+            return Err(error);
+        }
+    };
 
     if let Some(trace_path) = &args.trace_file {
         let relocated_trace = cairo_runner
