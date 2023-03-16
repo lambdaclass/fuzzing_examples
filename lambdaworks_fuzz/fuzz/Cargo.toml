@@ -10,7 +10,7 @@ cargo-fuzz = true
 
 [dependencies]
 libfuzzer-sys = "0.4"
-lambdaworks-math = { git = "https://github.com/lambdaclass/lambdaworks.git", branch = "implement_arbitraty_trait", features =  ["arbitrary"] }
+lambdaworks-math = { git = "https://github.com/lambdaclass/lambdaworks.git", rev = "688df26ce0cd3ba249158f0c0aefcf0278c6fdeb" }
 arbitrary = { version = "1", features = ["derive"] }
 derive_arbitrary = "1.2.3"
 
@@ -36,5 +36,11 @@ doc = false
 [[bin]]
 name = "fuzz_target_3"
 path = "fuzz_targets/fuzz_target_3.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fft_fuzz"
+path = "fuzz_targets/fft_fuzz.rs"
 test = false
 doc = false

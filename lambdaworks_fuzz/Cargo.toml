@@ -6,6 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-lambdaworks-math = { git = "https://github.com/lambdaclass/lambdaworks.git", branch = "implement_arbitraty_trait", features =  ["arbitrary"] }
+lambdaworks-math = { git = "https://github.com/lambdaclass/lambdaworks.git", branch = "main" }
 arbitrary = { version = "1", features = ["derive"] }
 derive_arbitrary = "1.2.3"
