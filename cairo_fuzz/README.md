@@ -8,7 +8,12 @@ From the [cairo-rs](https://github.com/lambdaclass/cairo-rs) README:
 
 ## How to run
 
+# Regular fuzzer
 Move to the fuzz folder 
 `cd fuzz`
 Then run honggfuzz with the json dict
-`cargo hfuzz run fuzz --dict=json.dict`
+`HFUZZ_RUN_ARGS="--dict=json.dict" cargo hfuzz run fuzz`
+
+# Differential fuzzer
+`cd diff-fuzz`
+`HFUZZ_RUN_ARGS="--input=cairo_programs" cargo hfuzz run diff-fuzz`
