@@ -1,6 +1,5 @@
 #[macro_use]
 extern crate honggfuzz;
-use arbitrary::Arbitrary;
 use cairo_vm::cairo_run;
 use cairo_vm::{
     hint_processor::builtin_hint_processor::builtin_hint_processor_definition::BuiltinHintProcessor,
@@ -14,7 +13,6 @@ use std::{
     path::PathBuf,
 };
 
-#[derive(Arbitrary)]
 struct Args {
     filename: u32,
     trace_file: Option<PathBuf>,
