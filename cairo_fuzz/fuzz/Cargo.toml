@@ -8,6 +8,4 @@ edition = "2021"
 [dependencies]
 honggfuzz = "0.5.51"
 cairo-vm = { git = "https://github.com/lambdaclass/cairo-rs.git", rev = "c15c642adef6ee0d680e50a680e9b88a3f7f30dd" }
-arbitrary = { version = "1.2.3", features = ["derive"] }
 rand = "0.8.5"
-
