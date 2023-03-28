@@ -16,4 +16,5 @@ Then run honggfuzz with the json dict
 
 # Differential fuzzer
 `cd diff-fuzz`
-`HFUZZ_RUN_ARGS="--input=cairo_programs" cargo hfuzz run diff-fuzz`
+`make`
+`HFUZZ_RUN_ARGS="--dict=json.dict --input=corpus" cargo hfuzz run diff-fuzz`
