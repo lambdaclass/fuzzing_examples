@@ -31,7 +31,7 @@ In this repo the fuzzers have the following structure:
 ## User Guide
 
 ### 1. create the docker container 
-* Use the command  `docker build -t ready-to-fuzz-image` inside this project to create a docker image named **ready-to-fuzz-image** from the dockerfile in the project.
+* Use the command  `docker build -t ready-to-fuzz-image .` inside this project to create a docker image named **ready-to-fuzz-image** from the dockerfile in the project.
 
 * run the command `docker run -it --rm --cap-add=SYS_PTRACE --security-opt seccomp=unconfined ready-to-fuzz-image bash` to run the container from the image previously created.
 
