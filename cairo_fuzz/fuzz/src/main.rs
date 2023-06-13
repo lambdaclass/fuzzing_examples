@@ -60,8 +60,6 @@ pub fn cairo_fuzz_run(
         verify_secure_runner(&cairo_runner, true, None, &mut vm)?;
     }
 
-    write_output(&mut cairo_runner, &mut vm)?;
-
     cairo_runner.relocate(&mut vm, true)?;
 
     Ok(cairo_runner)
