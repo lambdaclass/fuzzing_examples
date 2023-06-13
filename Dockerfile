@@ -14,4 +14,4 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 RUN cargo install honggfuzz
 RUN cargo install cargo-fuzz
 
-RUN git clone https://github.com/lambdaclass/fuzzing_examples.git
+COPY . .
