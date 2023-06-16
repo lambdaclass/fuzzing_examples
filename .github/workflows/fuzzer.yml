@@ -1,8 +1,5 @@
 name: "Fuzzer Workflow"
-on:
-  schedule:
-  # At the end of every day
-  - cron: "* * * * *"    
+on: workflow_dispatch
 jobs:
   changelog:
     runs-on: ubuntu-latest
