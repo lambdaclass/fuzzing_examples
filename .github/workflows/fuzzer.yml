@@ -2,7 +2,7 @@ name: "Fuzzer Workflow"
 on:
   schedule:
   # At the end of every day
-  - cron: "* 0 * * *"    
+  - cron: "* * * * *"    
 jobs:
   changelog:
     runs-on: ubuntu-latest
