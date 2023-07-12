@@ -51,7 +51,7 @@ jobs:
       id: check_file_changed
       with:
         files: |
-          test_fuzzer/hfuzz_workspace/test_fuzzer/HONGGFUZZ*
+          test_fuzzer/hfuzz_workspace/test_fuzzer/HONGGFUZZ.REPORT.TXT
           
     - name: Create issue 
       uses: JasonEtco/create-an-issue@v2
