@@ -1,6 +1,6 @@
 ---
 title: Someone just pushed
-assignees: dafifynn, Juan-M-V
+assignees: dafifynn
 labels: bug, enhancement
 ---
 template works!.
