@@ -15,7 +15,6 @@ jobs:
         path: test_fuzzer/hfuzz_workspace/input
         key: ${{ runner.os }}-inputs
 
-    
     - name: Install dependencies
       run: |
         sudo apt-get update
@@ -46,6 +45,7 @@ jobs:
       with:
         # Checkout as many commits as needed for the diff
         fetch-depth: 2
+
     - name: Check diff
       uses: tj-actions/verify-changed-files@v16
       id: check_file_changed
