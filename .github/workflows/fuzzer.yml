@@ -64,9 +64,8 @@ jobs:
         Write-Host "::set-output name=docs_changed::$HasDiff"
 
     - name: Create issue 
-      shell: pwsh
+      uses: JasonEtco/create-an-issue@v2
       # steps.<step_id>.outputs.<output name>
       if: steps.check_file_changed.outputs.docs_changed == 'True'
-      uses: JasonEtco/create-an-issue@v2
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
