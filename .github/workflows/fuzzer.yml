@@ -49,23 +49,15 @@ jobs:
         # Checkout as many commits as needed for the diff
         fetch-depth: 2
     - name: Check diff
-      shell: pwsh
-      # Give an id to the step, so we can reference it later
       id: check_file_changed
-      run: |
-        # Diff HEAD with the previous commit
-        $diff = git diff --name-only HEAD^ HEAD
-
-        # Check if honggfuzz report has changed and new crash dump was added.
-        $SourceDiff = $diff | Where-Object { $_ -match '*/hfuzz_workspace/test_fuzzer/HONGGFUZZ*' -or $_ -match '*/hfuzz_workspace/test_fuzzer/SIG*' }
-        $HasDiff = $SourceDiff.Length -gt 0
-
-        # Set the output named "docs_changed"
-        Write-Host "::set-output name=docs_changed::$HasDiff"
+      with:
+        filters: |
+          report:
+          - '*/hfuzz_workspace/test_fuzzer/HONGGFUZZ*'
 
     - name: Create issue 
       uses: JasonEtco/create-an-issue@v2
       # steps.<step_id>.outputs.<output name>
-      if: steps.check_file_changed.outputs.docs_changed == 'True'
+      if: steps.check_file_changed.outputs.report == 'true'
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
