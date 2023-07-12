@@ -47,16 +47,12 @@ jobs:
         fetch-depth: 2
 
     - name: Check diff
-      uses: tj-actions/verify-changed-files@v16
       id: check_file_changed
-      with:
-        files: |
-          */hfuzz_workspace/test_fuzzer/HONGGFUZZ*
-          */hfuzz_workspace/test_fuzzer/SIG*
+      run:  echo "report=$(git diff --name-only HEAD^ HEAD -- test_fuzzer/hfuzz_workspace/test_fuzzer)" >> $GITHUB_OUTPUT 
 
     - name: Create issue 
       uses: JasonEtco/create-an-issue@v2
       # steps.<step_id>.outputs.<output name>
-      if: steps.check_file_changed.outputs.files_changed == 'true'
+      if: ${{ steps.check_file_changed.outputs.report != '' }} 
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
