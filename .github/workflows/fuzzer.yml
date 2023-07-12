@@ -33,19 +33,42 @@ jobs:
     - name: Install Honggfuzz
       run: cargo install honggfuzz
 
-    - if: ${{ steps.cache-inputs.outputs.cache-hit != 'true' }}
-      name: Initializing fuzzer from 0 
+    - name: Initializing fuzzer with previous inputs 
       run: |
         cd test_fuzzer
-        HFUZZ_RUN_ARGS="--run_time 60" cargo hfuzz run test_fuzzer
+        HFUZZ_RUN_ARGS="--run_time 10" cargo hfuzz run test_fuzzer
+        HFUZZ_RUN_ARGS="--minimize" cargo hfuzz run test_fuzzer
 
-    - if: ${{ steps.cache-inputs.outputs.cache-hit != 'false' }}
-      name: Initializing fuzzer with previous inputs 
-      run: |
-        cd test_fuzzer
-        HFUZZ_RUN_ARGS="--run_time 60 --minimize" cargo hfuzz run test_fuzzer
+    # - uses: stefanzweifel/git-auto-commit-action@v4
+    #   with:
+    #     commit_message: changing report
+    #     file_pattern: '*/hfuzz_workspace/test_fuzzer/HONGGFUZZ*  */hfuzz_workspace/test_fuzzer/SIG*'
 
-    - uses: stefanzweifel/git-auto-commit-action@v4
+    - name: Checkout commits  
+      uses: actions/checkout@v2
       with:
-        commit_message: changing report
-        file_pattern: '*/hfuzz_workspace/test_fuzzer/HONGGFUZZ*  */hfuzz_workspace/test_fuzzer/SIG*'
+        # Checkout as many commits as needed for the diff
+        fetch-depth: 2
+    - name: Check diff
+      shell: pwsh
+      # Give an id to the step, so we can reference it later
+      id: check_file_changed
+      run: |
+        # Diff HEAD with the previous commit
+        $diff = git diff --name-only HEAD^ HEAD
+
+        # Check if honggfuzz report has changed and new crash dump was added.
+        $SourceDiff = $diff | Where-Object { $_ -match '*/hfuzz_workspace/test_fuzzer/HONGGFUZZ*' -or $_ -match '*/hfuzz_workspace/test_fuzzer/SIG*' }
+        $HasDiff = $SourceDiff.Length -gt 0
+
+        # Set the output named "docs_changed"
+        Write-Host "::set-output name=docs_changed::$HasDiff"
+
+    - name: Create issue 
+      shell: pwsh
+      # steps.<step_id>.outputs.<output name>
+      if: steps.check_file_changed.outputs.docs_changed == 'True'
+      uses: JasonEtco/create-an-issue@v2
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
