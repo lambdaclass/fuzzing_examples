@@ -51,8 +51,8 @@ jobs:
       id: check_file_changed
       with:
         files: |
-          */hfuzz_workspace/test_fuzzer/HONGGFUZZ*
-          */hfuzz_workspace/test_fuzzer/SIG*
+          **/hfuzz_workspace/test_fuzzer/HONGGFUZZ*
+          **/hfuzz_workspace/test_fuzzer/SIG*
 
     - name: Create issue 
       uses: JasonEtco/create-an-issue@v2
