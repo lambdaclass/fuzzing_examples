@@ -7,8 +7,6 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v3
-      with:
-        ref: ${{ github.head_ref }}
 
     - name: Cache Inputs
       id: cache-inputs
@@ -38,10 +36,10 @@ jobs:
         HFUZZ_RUN_ARGS="--run_time 5" cargo hfuzz run test_fuzzer
         HFUZZ_RUN_ARGS="--minimize" cargo hfuzz run test_fuzzer
 
-    # - uses: stefanzweifel/git-auto-commit-action@v4
-    #   with:
-    #     commit_message: changing report
-    #     file_pattern: '*/hfuzz_workspace/test_fuzzer/HONGGFUZZ*  */hfuzz_workspace/test_fuzzer/SIG*'
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: changing report
+        file_pattern: '*/hfuzz_workspace/test_fuzzer/HONGGFUZZ*  */hfuzz_workspace/test_fuzzer/SIG*'
 
     - name: Checkout commits  
       uses: actions/checkout@v2
@@ -49,15 +47,16 @@ jobs:
         # Checkout as many commits as needed for the diff
         fetch-depth: 2
     - name: Check diff
+      uses: tj-actions/verify-changed-files@v16
       id: check_file_changed
       with:
-        filters: |
-          report:
-          - '*/hfuzz_workspace/test_fuzzer/HONGGFUZZ*'
+        files: |
+          */hfuzz_workspace/test_fuzzer/HONGGFUZZ*
+          */hfuzz_workspace/test_fuzzer/SIG*
 
     - name: Create issue 
       uses: JasonEtco/create-an-issue@v2
       # steps.<step_id>.outputs.<output name>
-      if: steps.check_file_changed.outputs.report == 'true'
+      if: steps.check_file_changed.outputs.files_changed == 'true'
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
