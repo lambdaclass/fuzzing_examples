@@ -37,6 +37,11 @@ jobs:
         HFUZZ_RUN_ARGS="--run_time 5" cargo hfuzz run test_fuzzer
         HFUZZ_RUN_ARGS="--minimize" cargo hfuzz run test_fuzzer
 
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: changing report
+        file_pattern: '*/hfuzz_workspace/test_fuzzer/HONGGFUZZ*  */hfuzz_workspace/test_fuzzer/SIG*'
+
     - name: Checkout commits  
       uses: actions/checkout@v2
       with:
