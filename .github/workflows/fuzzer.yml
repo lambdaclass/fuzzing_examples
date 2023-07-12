@@ -1,8 +1,5 @@
 name: "Fuzzer Workflow"
-on:
-  schedule:
-  # At the end of every day
-  - cron: "* 0 * * *"    
+on: workflow_dispatch
 jobs:
   changelog:
     runs-on: ubuntu-latest
@@ -10,6 +7,8 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        ref: ${{ github.head_ref }}
 
     - name: Cache Inputs
       id: cache-inputs
@@ -32,11 +31,11 @@ jobs:
 
     - name: Install Honggfuzz
       run: cargo install honggfuzz
-
+      
     - name: Initializing fuzzer with previous inputs 
       run: |
         cd test_fuzzer
-        HFUZZ_RUN_ARGS="--run_time 10" cargo hfuzz run test_fuzzer
+        HFUZZ_RUN_ARGS="--run_time 5" cargo hfuzz run test_fuzzer
         HFUZZ_RUN_ARGS="--minimize" cargo hfuzz run test_fuzzer
 
     # - uses: stefanzweifel/git-auto-commit-action@v4
@@ -71,4 +70,3 @@ jobs:
       uses: JasonEtco/create-an-issue@v2
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-

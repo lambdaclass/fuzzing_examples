@@ -13,13 +13,8 @@ fuzz_target!(|data: &[u8]| {
 
     let inflate_decoded = inflate_bytes(data).is_ok();
 
-    let _ = match(libflate_res, inflate_decoded){
-        (true, true) => true,
-        (false, false) => false,
-        _ => panic!(
-            "differential fuzz failed {}-{}",
-            libflate_res, inflate_decoded
-        )
-
-    };
+    if libflate_res != inflate_decoded {
+        panic!("differential fuzz failed {}-{}",
+            libflate_res, inflate_decoded)
+    }
 });
