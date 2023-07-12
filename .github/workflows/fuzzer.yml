@@ -52,8 +52,7 @@ jobs:
       with:
         files: |
           **/hfuzz_workspace/test_fuzzer/HONGGFUZZ*
-          **/hfuzz_workspace/test_fuzzer/SIG*
-
+          
     - name: Create issue 
       uses: JasonEtco/create-an-issue@v2
       # steps.<step_id>.outputs.<output name>
