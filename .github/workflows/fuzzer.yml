@@ -56,3 +56,4 @@ jobs:
       if: ${{ steps.check_file_changed.outputs.report != '' }} 
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FILES: ${{ steps.check_file_changed.outputs.report }}
