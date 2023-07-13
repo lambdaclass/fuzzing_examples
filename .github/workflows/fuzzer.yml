@@ -48,7 +48,7 @@ jobs:
 
     - name: Check diff
       id: check_file_changed
-      run:  echo "report=$(git diff --name-only HEAD^ HEAD -- test_fuzzer/hfuzz_workspace/test_fuzzer/HONGGFUZZ.REPORT.TXT)" >> $GITHUB_OUTPUT 
+      run:  echo "report=$(git diff --name-only HEAD^ HEAD -- test_fuzzer/hfuzz_workspace/test_fuzzer/*.fuzz)" >> $GITHUB_OUTPUT 
 
     - name: Create issue 
       uses: JasonEtco/create-an-issue@v2
