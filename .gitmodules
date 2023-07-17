@@ -1,0 +1,3 @@
+[submodule "c_fuzzing/cJSON"]
+	path = c_fuzzing/cJSON
+	url = https://github.com/DaveGamble/cJSON
