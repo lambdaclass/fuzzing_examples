@@ -31,13 +31,21 @@ In this repo the fuzzers have the following structure:
 ## User Guide
 
 ### 1. Create the docker container 
-To create and run the docker container ready to run the fuzzers use the command:
+To create and run the docker container with the fuzzers use the command:
 `make docker-up`
 
 
 ### 2. Run a fuzzer 
 
-Each fuzzer has its own Readme with specific instructions to run each of them.
+Each fuzzer has its own README with specific instructions to run each of them.
+
+ * [Asn1 fuzzer](asn1/README.md)
+ * [Bencode parser fuzzer](bencode-parser-fuzz/README.md)
+ * [Cairo fuzzer](cairo_fuzz/README.md)
+ * [Deflate fuzzer](deflate_fuzz/README.md)
+ * [Merkle patricia tree fuzzer](merkle_patricia_tree/README.md)
+ * [Wasmbin fuzzer](wasmbin_fuzz/README.md)
+ * [Xml parser fuzzer](xmlparser/README.md)
 
 To run a fuzzer with default settings, step into the fuzzer folder and use the command:
 
