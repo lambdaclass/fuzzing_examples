@@ -30,28 +30,27 @@ In this repo the fuzzers have the following structure:
 
 ## User Guide
 
-### 1. create the docker container 
-* Use the command  `docker build -t ready-to-fuzz-image .` inside this project to create a docker image named **ready-to-fuzz-image** from the dockerfile in the project.
+### 1. Create the docker container 
+To create and run the docker container with the fuzzers use the command:
+`make docker-up`
 
-* run the command `docker run -it --rm --cap-add=SYS_PTRACE --security-opt seccomp=unconfined ready-to-fuzz-image bash` to run the container from the image previously created.
 
 ### 2. Run a fuzzer 
 
-Depending on the fuzzer use the following commands:
+Each fuzzer has its own README with specific instructions to run each of them.
 
-### If the Fuzzer Uses Honggfuzz
+ * [Asn1 fuzzer](asn1/README.md)
+ * [Bencode parser fuzzer](bencode-parser-fuzz/README.md)
+ * [Cairo fuzzer](cairo_fuzz/README.md)
+ * [Deflate fuzzer](deflate_fuzz/README.md)
+ * [Merkle patricia tree fuzzer](merkle_patricia_tree/README.md)
+ * [Wasmbin fuzzer](wasmbin_fuzz/README.md)
+ * [Xml parser fuzzer](xmlparser/README.md)
 
-* to run it with totally random data use: 
-`cargo hfuzz run <fuzzer name>`
-* to run it with an input dictionary use: 
-`HFUZZ_RUN_ARGS=--dict=<dictionaryfile>.dict cargo hfuzz run <fuzzer name>`
-* to run it with an initial collection of inputs use: 
-`cargo hfuzz run <fuzzer name> -i <path to inputs folder>`
+To run a fuzzer with default settings, step into the fuzzer folder and use the command:
 
-* to debug with certain input use: 
-`cargo hfuzz run-debug <fuzzer name> <input to debug the fuzzer>`
+For cargo-fuzz fuzzers:
+`make run-libfuzzer <fuzzer name>`
 
-### if the fuzzer uses cargofuzz
-
-* to run it with random data use:
-`cargo +nightly fuzz run <target file name>`
+For honggfuzz fuzzers:
+`make run-honggfuzzer <fuzzer name>`
